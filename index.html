@@ -1002,7 +1002,7 @@ link.addEventListener('click', function() {
 
 });
    </script>
-     <script>
+     <!-- <script>
       function downloadImage() {
         source = 'assets/cv/muhammad-rizki-cv.pdf';
       const fileName = 'muhammad-rizki-cv.pdf';
@@ -1013,6 +1013,21 @@ link.addEventListener('click', function() {
       el.click();
       el.remove();
       }
-    </script>
+    </script> -->
+   <script>
+      function downloadImage() {
+         var source = 'assets/cv/muhammad-rizki-cv.pdf';
+         const fileName = 'muhammad-rizki-cv.pdf';
+         var el = document.createElement("a");
+         el.href = source;
+         el.download = fileName;
+         document.body.appendChild(el);
+
+         setTimeout(() => { 
+            el.click();
+            el.remove();
+         }, 100);
+      }
+   </script>
    </body>
 </html>
