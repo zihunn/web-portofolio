@@ -271,19 +271,19 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,0.3);
+  background: #6f34fe;
+  border: none;
   color: #fff;
   font-size: 15px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.2s;
   z-index: 2;
+  box-shadow: 0 4px 16px rgba(111, 52, 254, 0.4);
 }
-.pd-carousel-btn:hover { background: #6f34fe; border-color: #6f34fe; }
+.pd-carousel-btn:hover { background: #5a28d4; transform: translateY(-50%) scale(1.08); }
 .pd-carousel-btn:focus { outline: none; }
 .pd-carousel-prev { left: 16px; }
 .pd-carousel-next { right: 16px; }
@@ -318,19 +318,19 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.2);
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,0.3);
+  background: #6f34fe;
+  border: none;
   color: #fff;
   font-size: 15px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.2s;
   z-index: 3;
+  box-shadow: 0 4px 16px rgba(111, 52, 254, 0.4);
 }
-.pd-back-btn:hover { background: #6f34fe; border-color: #6f34fe; }
+.pd-back-btn:hover { background: #5a28d4; transform: scale(1.08); }
 .pd-back-btn:focus { outline: none; }
 
 .pd-counter {
