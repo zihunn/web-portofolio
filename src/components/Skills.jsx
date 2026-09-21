@@ -1,16 +1,14 @@
-const skills = [
-  { name: 'Flutter', img: '/assets/image/flutter.svg' },
-  { name: 'Laravel', img: '/assets/image/laravel.svg' },
-  { name: 'Firebase', img: '/assets/image/firebase.svg' },
-  { name: 'MySQL', img: '/assets/image/mysql.svg' },
-]
+import { store } from '../data/store.js'
 
 export default function Skills() {
+  const skills = store.getSkills()
+  const cvPath = store.getCv()
+
   const downloadCV = (e) => {
     e.preventDefault()
     const el = document.createElement('a')
-    el.href = '/assets/cv/muhammad-rizki-cv.pdf'
-    el.download = 'muhammad-rizki-cv.pdf'
+    el.href = cvPath
+    el.download = cvPath.split('/').pop()
     document.body.appendChild(el)
     setTimeout(() => { el.click(); el.remove() }, 100)
   }
