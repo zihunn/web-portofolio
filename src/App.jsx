@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar.jsx'
 import Banner from './components/Banner.jsx'
 import Services from './components/Services.jsx'
@@ -6,15 +7,15 @@ import Skills from './components/Skills.jsx'
 import Portfolio from './components/Portfolio.jsx'
 import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
+import ProjectDetail from './pages/ProjectDetail.jsx'
 
-export default function App() {
+function HomePage() {
   const [isScrolled, setIsScrolled] = useState(false)
   const cursorRef = useRef(null)
   const cursor2Ref = useRef(null)
 
   useEffect(() => {
     if (window.WOW) new window.WOW().init()
-
     const handleScroll = () => setIsScrolled(window.scrollY >= 113)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
@@ -36,5 +37,14 @@ export default function App() {
       <div className="cursor" ref={cursorRef}></div>
       <div className="cursor2" ref={cursor2Ref}></div>
     </>
+  )
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/project/:id" element={<ProjectDetail />} />
+    </Routes>
   )
 }

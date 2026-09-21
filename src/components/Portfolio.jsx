@@ -1,5 +1,73 @@
 import { useState } from 'react'
-import ProjectDetail from './ProjectDetail'
+import { Link } from 'react-router-dom'
+
+export const PORTFOLIO_ITEMS = [
+  {
+    id: 'akademik-mahardika',
+    img: '/assets/image/portfolio-1.jpg',
+    title: 'Aplikasi Akademik Mahardika',
+    desc: 'Mempermudah dosen dan mahasiswa dalam kegiatan akademik',
+    fullDesc: 'Aplikasi akademik yang dirancang untuk mempermudah proses kegiatan belajar mengajar antara dosen dan mahasiswa. Fitur meliputi presensi digital, pengumpulan tugas, pengumuman kelas, dan akses nilai secara real-time.',
+    category: 'android',
+    badge: 'Android App',
+    skills: ['Android', 'Java', 'Firebase', 'MySQL'],
+    screenshots: [
+      '/assets/image/portfolio-1.jpg',
+    ],
+  },
+  {
+    id: 'chat-app',
+    img: '/assets/image/portfolio-2.svg',
+    title: 'Chat App',
+    desc: 'Berkomunikasi secara real-time dengan keluarga dan teman',
+    fullDesc: 'Aplikasi pesan instan berbasis Flutter yang memungkinkan komunikasi real-time antar pengguna. Dilengkapi fitur kirim pesan teks, notifikasi push, dan status online/offline.',
+    category: 'android',
+    badge: 'Flutter',
+    skills: ['Flutter', 'Dart', 'Firebase'],
+    screenshots: [
+      '/assets/image/portfolio-2.svg',
+    ],
+  },
+  {
+    id: 'point-of-sale',
+    img: '/assets/image/portfolio-3.svg',
+    title: 'Point of Sale',
+    desc: 'Sistem kasir untuk memperbaiki manajemen bisnis',
+    fullDesc: 'Sistem kasir (POS) berbasis Android untuk membantu pelaku usaha mengelola transaksi penjualan, stok barang, dan laporan keuangan harian secara mudah dan efisien.',
+    category: 'android',
+    badge: 'Android App',
+    skills: ['Android', 'Java', 'SQLite', 'MySQL'],
+    screenshots: [
+      '/assets/image/portfolio-3.svg',
+    ],
+  },
+  {
+    id: 'website-landing-page',
+    img: '/assets/image/portfolio-4.svg',
+    title: 'Website Landing Page',
+    desc: 'Landing page untuk LKP Kesehatan',
+    fullDesc: 'Landing page profesional untuk LKP (Lembaga Kursus dan Pelatihan) Kesehatan. Menampilkan informasi program pelatihan, profil lembaga, dan formulir pendaftaran peserta.',
+    category: 'web',
+    badge: 'Web App',
+    skills: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
+    screenshots: [
+      '/assets/image/portfolio-4.svg',
+    ],
+  },
+  {
+    id: 'clone-ui-gojek',
+    img: '/assets/image/portfolio-5.svg',
+    title: 'Clone UI Gojek',
+    desc: 'Replika antarmuka aplikasi Gojek menggunakan Flutter',
+    fullDesc: 'Proyek replika antarmuka aplikasi Gojek yang dibangun menggunakan Flutter. Bertujuan untuk mengasah kemampuan membangun UI yang kompleks dan responsif di Flutter.',
+    category: 'mobile',
+    badge: 'Mobile UI',
+    skills: ['Flutter', 'Dart'],
+    screenshots: [
+      '/assets/image/portfolio-5.svg',
+    ],
+  },
+]
 
 const CATEGORIES = [
   { id: 'all', label: 'All' },
@@ -8,69 +76,15 @@ const CATEGORIES = [
   { id: 'mobile', label: 'Mobile UI' },
 ]
 
-const ITEMS = [
-  {
-    img: '/assets/image/portfolio-1.jpg',
-    title: 'Aplikasi Akademik Mahardika',
-    desc: 'Mempermudah dosen dan mahasiswa dalam kegiatan akademik',
-    category: 'android',
-    badge: 'Android App',
-    screenshots: [
-      '/assets/image/portfolio-1.jpg',
-    ],
-  },
-  {
-    img: '/assets/image/portfolio-2.svg',
-    title: 'Chat App',
-    desc: 'Berkomunikasi secara real-time dengan keluarga dan teman',
-    category: 'android',
-    badge: 'Flutter',
-    screenshots: [
-      '/assets/image/portfolio-2.svg',
-    ],
-  },
-  {
-    img: '/assets/image/portfolio-3.svg',
-    title: 'Point of Sale',
-    desc: 'Sistem kasir untuk memperbaiki manajemen bisnis',
-    category: 'android',
-    badge: 'Android App',
-    screenshots: [
-      '/assets/image/portfolio-3.svg',
-    ],
-  },
-  {
-    img: '/assets/image/portfolio-4.svg',
-    title: 'Website Landing Page',
-    desc: 'Landing page untuk LKP Kesehatan',
-    category: 'web',
-    badge: 'Web App',
-    screenshots: [
-      '/assets/image/portfolio-4.svg',
-    ],
-  },
-  {
-    img: '/assets/image/portfolio-5.svg',
-    title: 'Clone UI Gojek',
-    desc: 'Replika antarmuka aplikasi Gojek menggunakan Flutter',
-    category: 'mobile',
-    badge: 'Mobile UI',
-    screenshots: [
-      '/assets/image/portfolio-5.svg',
-    ],
-  },
-]
-
 const INITIAL_SHOW = 6
 
 export default function Portfolio() {
   const [activeFilter, setActiveFilter] = useState('all')
   const [showAll, setShowAll] = useState(false)
-  const [selectedProject, setSelectedProject] = useState(null)
 
   const filtered = activeFilter === 'all'
-    ? ITEMS
-    : ITEMS.filter(item => item.category === activeFilter)
+    ? PORTFOLIO_ITEMS
+    : PORTFOLIO_ITEMS.filter(item => item.category === activeFilter)
 
   const visible = showAll ? filtered : filtered.slice(0, INITIAL_SHOW)
   const hasMore = filtered.length > INITIAL_SHOW && !showAll
@@ -106,11 +120,10 @@ export default function Portfolio() {
         <div className="container">
           <div className="portfolio-grid">
             {visible.map((item, i) => (
-              <a
+              <Link
                 key={`${activeFilter}-${i}`}
-                href="#"
+                to={`/project/${item.id}`}
                 className="portfolio-card portfolio-card-enter"
-                onClick={e => { e.preventDefault(); setSelectedProject(item) }}
                 style={{ animationDelay: `${(i % INITIAL_SHOW) * 60}ms` }}
               >
                 <span className="portfolio-card-badge">{item.badge}</span>
@@ -128,7 +141,7 @@ export default function Portfolio() {
                     <i className="fas fa-arrow-right"></i>
                   </span>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -141,13 +154,6 @@ export default function Portfolio() {
           )}
         </div>
       </section>
-
-      {selectedProject && (
-        <ProjectDetail
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
-        />
-      )}
     </>
   )
 }
