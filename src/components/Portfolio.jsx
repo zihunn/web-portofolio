@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import ProjectDetail from './ProjectDetail'
 
 const CATEGORIES = [
   { id: 'all', label: 'All' },
@@ -14,6 +15,9 @@ const ITEMS = [
     desc: 'Mempermudah dosen dan mahasiswa dalam kegiatan akademik',
     category: 'android',
     badge: 'Android App',
+    screenshots: [
+      '/assets/image/portfolio-1.jpg',
+    ],
   },
   {
     img: '/assets/image/portfolio-2.svg',
@@ -21,6 +25,9 @@ const ITEMS = [
     desc: 'Berkomunikasi secara real-time dengan keluarga dan teman',
     category: 'android',
     badge: 'Flutter',
+    screenshots: [
+      '/assets/image/portfolio-2.svg',
+    ],
   },
   {
     img: '/assets/image/portfolio-3.svg',
@@ -28,6 +35,9 @@ const ITEMS = [
     desc: 'Sistem kasir untuk memperbaiki manajemen bisnis',
     category: 'android',
     badge: 'Android App',
+    screenshots: [
+      '/assets/image/portfolio-3.svg',
+    ],
   },
   {
     img: '/assets/image/portfolio-4.svg',
@@ -35,6 +45,9 @@ const ITEMS = [
     desc: 'Landing page untuk LKP Kesehatan',
     category: 'web',
     badge: 'Web App',
+    screenshots: [
+      '/assets/image/portfolio-4.svg',
+    ],
   },
   {
     img: '/assets/image/portfolio-5.svg',
@@ -42,6 +55,9 @@ const ITEMS = [
     desc: 'Replika antarmuka aplikasi Gojek menggunakan Flutter',
     category: 'mobile',
     badge: 'Mobile UI',
+    screenshots: [
+      '/assets/image/portfolio-5.svg',
+    ],
   },
 ]
 
@@ -50,6 +66,7 @@ const INITIAL_SHOW = 6
 export default function Portfolio() {
   const [activeFilter, setActiveFilter] = useState('all')
   const [showAll, setShowAll] = useState(false)
+  const [selectedProject, setSelectedProject] = useState(null)
 
   const filtered = activeFilter === 'all'
     ? ITEMS
@@ -93,7 +110,7 @@ export default function Portfolio() {
                 key={`${activeFilter}-${i}`}
                 href="#"
                 className="portfolio-card portfolio-card-enter"
-                onClick={e => e.preventDefault()}
+                onClick={e => { e.preventDefault(); setSelectedProject(item) }}
                 style={{ animationDelay: `${(i % INITIAL_SHOW) * 60}ms` }}
               >
                 <span className="portfolio-card-badge">{item.badge}</span>
@@ -124,6 +141,13 @@ export default function Portfolio() {
           )}
         </div>
       </section>
+
+      {selectedProject && (
+        <ProjectDetail
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+        />
+      )}
     </>
   )
 }
