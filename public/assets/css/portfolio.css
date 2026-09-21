@@ -1,0 +1,223 @@
+/* ===== Portfolio Redesign ===== */
+
+/* Filter buttons */
+.portfolio-filter-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+  padding-bottom: 4px;
+}
+
+.portfolio-filter-btn {
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 9px 24px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Josefin Sans', sans-serif;
+  letter-spacing: 0.2px;
+}
+
+.portfolio-filter-btn:hover {
+  border-color: rgba(255, 255, 255, 0.75);
+  color: #fff;
+}
+
+.portfolio-filter-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.portfolio-filter-btn:focus {
+  outline: none;
+}
+
+/* Grid wrapper — overrides old filterDiv floats */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  padding: 0;
+  margin: 0;
+}
+
+@media (max-width: 991px) {
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 575px) {
+  .portfolio-grid { grid-template-columns: 1fr; }
+}
+
+/* Card */
+.portfolio-card {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #111;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;
+  text-decoration: none !important;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
+}
+
+/* Image */
+.portfolio-card-img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.portfolio-card:hover .portfolio-card-img {
+  transform: scale(1.06);
+}
+
+/* Dark overlay — always present, content slides up on hover */
+.portfolio-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 35%, rgba(17, 19, 43, 0.92) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 20px 18px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-card:hover .portfolio-card-overlay {
+  opacity: 1;
+}
+
+.portfolio-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.portfolio-card-info h4 {
+  color: #fff !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  font-weight: 700;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.portfolio-card-info p {
+  color: rgba(255, 255, 255, 0.75) !important;
+  font-size: 13px !important;
+  line-height: 17px !important;
+  margin-bottom: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.portfolio-card-arrow {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 15px;
+  flex-shrink: 0;
+  margin-left: 12px;
+  transition: background 0.2s;
+  text-decoration: none !important;
+}
+
+.portfolio-card-arrow:hover {
+  background: var(--light-purple-color);
+  color: #fff !important;
+}
+
+/* Category badge on image */
+.portfolio-card-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-family: 'Josefin Sans', sans-serif;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+/* Fade-in when items appear */
+@keyframes fadeInCard {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.portfolio-card-enter {
+  animation: fadeInCard 0.35s ease forwards;
+}
+
+/* portfolio-body-con override for new grid */
+.portfolio-body-new {
+  margin-top: -160px;
+  padding-bottom: 80px;
+}
+
+@media (max-width: 991px) {
+  .portfolio-body-new { margin-top: -120px; }
+}
+
+@media (max-width: 767px) {
+  .portfolio-body-new { margin-top: -80px; }
+}
+
+/* Show More button */
+.portfolio-show-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+}
+
+.portfolio-show-more-btn {
+  border: 2px solid var(--light-purple-color);
+  background: transparent;
+  color: var(--light-purple-color);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 40px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.portfolio-show-more-btn:hover {
+  background: var(--light-purple-color);
+  color: #fff;
+}
+
+.portfolio-show-more-btn:focus {
+  outline: none;
+}
