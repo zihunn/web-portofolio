@@ -20,31 +20,25 @@ export default function Skills() {
           <div className="row">
             <div className="col-lg-6 order-lg-0 order-2">
               <div className="skill-left-con text-center wow slideInLeft">
-                {[skills.slice(0, 2), skills.slice(2)].map((row, ri) => (
-                  <div key={ri} className="row service-skill-sttaf-con">
-                    {row.map(({ name, img }) => (
-                      <div key={name} className="col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div className="skill-left-item-con">
-                          <img src={img} alt={name} style={{ height: '9rem', paddingBottom: '20%' }} />
-                          <div className="service-skill-sttaf-item-heading">
-                            <p className="mb-0">{name}</p>
-                          </div>
-                        </div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
+                  {skills.map(({ name, img }) => (
+                    <div key={name} className="skill-left-item-con" style={{ margin: 0 }}>
+                      <img src={img} alt={name} style={{ height: '4rem', paddingBottom: '8%' }} />
+                      <div className="service-skill-sttaf-item-heading">
+                        <p className="mb-0" style={{ fontSize: '13px' }}>{name}</p>
                       </div>
-                    ))}
-                  </div>
-                ))}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
             <div className="col-lg-6 d-flex align-items-center">
               <div className="skill-right-con wow slideInRight">
                 <h6>My Skills</h6>
-                <h2>Creating Apps that Turn Ideas into Reality</h2>
+                <h2>The Stack Behind the Work</h2>
                 <p>
-                  I often use Laravel and Flutter frameworks to develop applications.
-                  For data management, I use Firebase for cloud-based solutions and
-                  MySQL for more traditional database needs.
-                  This combination helps me provide effective and secure solutions for each project.
+                  I have been working with this stack since 2023 on real clients and real systems.
+                  It is what I reach for when something actually needs to work.
                 </p>
                 <div className="generic-btn download-bnt">
                   <a href="#" id="downloadImg" onClick={downloadCV}>Download CV</a>

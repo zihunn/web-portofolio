@@ -264,6 +264,21 @@
   display: block;
 }
 
+.pd-carousel-slide--mobile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0f0f1a;
+}
+.pd-carousel-slide--mobile img {
+  width: auto;
+  height: 90%;
+  max-width: 42%;
+  object-fit: contain;
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+}
+
 .pd-carousel-btn {
   position: absolute;
   top: 50%;
@@ -461,6 +476,14 @@
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.pd-thumb-item--mobile {
+  aspect-ratio: 9 / 16;
+  background: #0f0f1a;
+}
+.pd-thumb-item--mobile img {
+  object-fit: contain;
 }
 
 .pd-not-found {

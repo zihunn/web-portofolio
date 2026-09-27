@@ -8,7 +8,6 @@ import Portfolio from './components/Portfolio.jsx'
 import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
 import ProjectDetail from './pages/ProjectDetail.jsx'
-import Admin from './pages/Admin.jsx'
 
 function HomePage() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -46,7 +45,6 @@ export default function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/project/:id" element={<ProjectDetail />} />
-      <Route path="/admin" element={<Admin />} />
     </Routes>
   )
 }

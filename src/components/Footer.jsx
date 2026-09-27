@@ -23,12 +23,12 @@ export default function Footer() {
                 </a>
               </li>
               <li className="d-inline-block">
-                <a href="https://www.instagram.com/zihun.me">
+                <a href="https://www.instagram.com/m.rizkky._" target="_blank" rel="noopener noreferrer">
                   <i className="fab fa-instagram d-flex align-items-center justify-content-center"></i>
                 </a>
               </li>
               <li className="d-inline-block">
-                <a href="#">
+                <a href="https://www.linkedin.com/in/muhammad-rizki-938a1b286" target="_blank" rel="noopener noreferrer">
                   <i className="fab fa-linkedin-in d-flex align-items-center justify-content-center"></i>
                 </a>
               </li>
@@ -36,7 +36,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="copy-right-content text-center">
-          <p className="mb-0">Copyright 2024 rizki-portofolio.my.id | All Rights Reserved.</p>
+          <p className="mb-0">Copyright {new Date().getFullYear()} rizki-portofolio.my.id | All Rights Reserved.</p>
         </div>
       </div>
     </div>

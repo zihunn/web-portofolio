@@ -7,7 +7,7 @@ export default function Banner({ isScrolled, cursorRef, cursor2Ref }) {
   useEffect(() => {
     let current = 0
     const interval = setInterval(() => {
-      if (current < 20) {
+      if (current < 21) {
         current++
         setCount(current)
       } else {
@@ -49,12 +49,12 @@ export default function Banner({ isScrolled, cursorRef, cursor2Ref }) {
               </a>
             </li>
             <li className="mt-3 mb-3">
-              <a href="https://www.instagram.com/zihun.me">
+              <a href="https://www.instagram.com/m.rizkky._" target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-instagram d-flex align-items-center justify-content-center ml-0 mr-0"></i>
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="https://www.linkedin.com/in/muhammad-rizki-938a1b286" target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-linkedin-in d-flex align-items-center justify-content-center"></i>
               </a>
             </li>
@@ -74,8 +74,7 @@ export default function Banner({ isScrolled, cursorRef, cursor2Ref }) {
                     <li><h1>Rizki</h1></li>
                   </ul>
                   <p style={{ paddingRight: '2%' }}>
-                    As a junior Android developer, I am constantly looking for opportunities to improve my skills and understand the latest
-                    Android app development technologies and methodologies. I believe that the learning process never ends.
+                    Full-stack developer with hands-on experience delivering production-ready systems for institutions, government-linked enterprises, and corporate clients.
                   </p>
                 </div>
                 <div className="banner-btn generic-btn d-inline-block">
@@ -107,7 +106,7 @@ export default function Banner({ isScrolled, cursorRef, cursor2Ref }) {
                       <img src="/assets/image/cup-img.png" alt="cup-img" className="img-fluid" />
                     </figure>
                     <div className="best-award-title">
-                      <p className="mb-0">Android<br />Developer.</p>
+                      <p className="mb-0">Full-stack<br />Developer</p>
                     </div>
                   </div>
                 </div>

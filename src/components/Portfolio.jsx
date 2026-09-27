@@ -2,25 +2,14 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { store } from '../data/store.js'
 
-const CATEGORIES = [
-  { id: 'all', label: 'All' },
-  { id: 'android', label: 'Android App' },
-  { id: 'web', label: 'Web App' },
-  { id: 'mobile', label: 'Mobile UI' },
-]
-
 const INITIAL_SHOW = 6
 
 export default function Portfolio() {
-  const [activeFilter, setActiveFilter] = useState('all')
   const [showAll, setShowAll] = useState(false)
 
   const items = store.getPortfolio()
-  const filtered = activeFilter === 'all' ? items : items.filter(i => i.category === activeFilter)
-  const visible = showAll ? filtered : filtered.slice(0, INITIAL_SHOW)
-  const hasMore = filtered.length > INITIAL_SHOW && !showAll
-
-  const handleFilter = (id) => { setActiveFilter(id); setShowAll(false) }
+  const visible = showAll ? items : items.slice(0, INITIAL_SHOW)
+  const hasMore = items.length > INITIAL_SHOW && !showAll
 
   return (
     <>
@@ -30,17 +19,6 @@ export default function Portfolio() {
             <h6 className="text-white">Creative Works</h6>
             <h2 className="mb-0 text-white">My Portfolio</h2>
           </div>
-          <div className="portfolio-filter-tabs">
-            {CATEGORIES.map(({ id, label }) => (
-              <button
-                key={id}
-                className={`portfolio-filter-btn${activeFilter === id ? ' active' : ''}`}
-                onClick={() => handleFilter(id)}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -49,7 +27,7 @@ export default function Portfolio() {
           <div className="portfolio-grid">
             {visible.map((item, i) => (
               <Link
-                key={`${activeFilter}-${i}`}
+                key={item.id}
                 to={`/project/${item.id}`}
                 className="portfolio-card portfolio-card-enter"
                 style={{ animationDelay: `${(i % INITIAL_SHOW) * 60}ms` }}
@@ -71,7 +49,7 @@ export default function Portfolio() {
           {hasMore && (
             <div className="portfolio-show-more">
               <button className="portfolio-show-more-btn" onClick={() => setShowAll(true)}>
-                Show More ({filtered.length - INITIAL_SHOW} more)
+                Show More ({items.length - INITIAL_SHOW} more)
               </button>
             </div>
           )}

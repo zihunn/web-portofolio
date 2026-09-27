@@ -10,7 +10,13 @@ export default function ProjectDetail() {
   const project = store.getPortfolio().find(p => p.id === id)
 
   const [activeIdx, setActiveIdx] = useState(0)
+  const [mobileIdx, setMobileIdx] = useState([])
   const timerRef = useRef(null)
+
+  const handleImgLoad = (e, idx) => {
+    const { naturalWidth: w, naturalHeight: h } = e.target
+    if (w < h) setMobileIdx(prev => prev.includes(idx) ? prev : [...prev, idx])
+  }
 
   const shots = project ? (project.screenshots || [project.img]) : []
 
@@ -46,8 +52,8 @@ export default function ProjectDetail() {
       <div className="pd-carousel">
         <div className="pd-carousel-track" style={{ transform: `translateX(-${activeIdx * 100}%)` }}>
           {shots.map((src, i) => (
-            <div className="pd-carousel-slide" key={i}>
-              <img src={src} alt={`${project.title} screenshot ${i + 1}`} />
+            <div className={`pd-carousel-slide${mobileIdx.includes(i) ? ' pd-carousel-slide--mobile' : ''}`} key={i}>
+              <img src={src} alt={`${project.title} screenshot ${i + 1}`} onLoad={(e) => handleImgLoad(e, i)} />
             </div>
           ))}
         </div>
@@ -100,7 +106,7 @@ export default function ProjectDetail() {
                 {shots.map((src, i) => (
                   <button
                     key={i}
-                    className={`pd-thumb-item${activeIdx === i ? ' active' : ''}`}
+                    className={`pd-thumb-item${activeIdx === i ? ' active' : ''}${mobileIdx.includes(i) ? ' pd-thumb-item--mobile' : ''}`}
                     onClick={() => { goTo(i); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
                   >
                     <img src={src} alt={`screenshot ${i + 1}`} />
