@@ -1,50 +1,16 @@
-import { useState, useEffect, useRef } from 'react'
-import { Routes, Route } from 'react-router-dom'
-import Navbar from './components/Navbar.jsx'
-import Banner from './components/Banner.jsx'
-import Services from './components/Services.jsx'
-import Skills from './components/Skills.jsx'
-import Portfolio from './components/Portfolio.jsx'
-import Contact from './components/Contact.jsx'
-import Footer from './components/Footer.jsx'
+import { lazy, Suspense } from 'react'
+import { Navigate, Routes, Route } from 'react-router-dom'
 import ProjectDetail from './pages/ProjectDetail.jsx'
 
-function HomePage() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const cursorRef = useRef(null)
-  const cursor2Ref = useRef(null)
-
-  useEffect(() => {
-    if (window.WOW) new window.WOW().init()
-    const handleScroll = () => setIsScrolled(window.scrollY >= 113)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  return (
-    <>
-      <div className="header-and-banner-con w-100 float-left position-relative">
-        <div className="header-and-banner-inner-con">
-          <Navbar isScrolled={isScrolled} />
-          <Banner isScrolled={isScrolled} cursorRef={cursorRef} cursor2Ref={cursor2Ref} />
-        </div>
-      </div>
-      <Services cursorRef={cursorRef} cursor2Ref={cursor2Ref} />
-      <Skills />
-      <Portfolio />
-      <Contact />
-      <Footer />
-      <div className="cursor" ref={cursorRef}></div>
-      <div className="cursor2" ref={cursor2Ref}></div>
-    </>
-  )
-}
+// Home carries three.js, so a direct visit to a project page doesn't download it
+const Home = lazy(() => import('./pages/Home.jsx'))
 
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route path="/" element={<Suspense fallback={null}><Home /></Suspense>} />
       <Route path="/project/:id" element={<ProjectDetail />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
 }
